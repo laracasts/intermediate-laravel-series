@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel {
 
@@ -22,8 +23,13 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('inspire')
-				 ->hourly();
+		// $schedule->command('inspire')
+		// 		 ->hourly();
+
+		$date = Carbon::now();
+
+		$shedule->exec("echo $date >> dates.txt")
+		  	    ->everyFiveMinutes();
 	}
 
 }
